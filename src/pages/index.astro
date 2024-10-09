@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../layouts/Base.astro";
+import PostPreview from "@/components/blog/PostPreviewB";
+import InformationPreview from "@/components/information/InformationPreview";
+import SocialMediaLinks from "@/components/SocialMediaLinks";
+import {
+  getAllPosts,
+  sortMDByDate,
+  sortMDByPinned,
+  getAllInfo,
+  getMyInformation,
+} from "@/utils";
+
+const MAX_POSTS = 5;
+const allPosts = await getAllPosts();
+const allInfo = await getAllInfo();
+const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+const allPostsByPinned = sortMDByPinned(allPostsByDate);
+const allInformation = getMyInformation(allInfo);
+---
+
+<BaseLayout title="Home">
+  <section>
+    <h1 class="title">Hola Antigua</h1>
+    <p class="mb-4 sm:mb-8">
+      Esta página está diseñada para brindarte toda la información que necesitas
+      sobre nuestra hermosa ciudad, con un enfoque especial en gastronomía,
+      eventos, turismo, y noticias importantes de la Municipalidad de La Antigua
+      Guatemala. 🏛️🍽️🎉
+    </p>
+    <p class="mb-4 sm:mb-8">
+      Aunque somos un municipio pequeño, Antigua ofrece una riqueza cultural y
+      gastronómica increíble. A veces sabemos qué queremos hacer o comer, pero
+      no siempre sabemos a dónde ir o qué opciones están disponibles:
+      restaurantes, sus ofertas, horarios, eventos... ¡y mucho más! 🗺️
+    </p>
+    <p class="mb-4 sm:mb-8">
+      Por eso hemos creado nuestro <span class="font-bold text-xl"
+        >Bot Antigüeño 🤖📲</span
+      >, para que tengas toda la información al alcance de tu mano sin instalar
+      ninguna aplicación, en un solo lugar. Basta con enviar un mensaje por
+      WhatsApp para resolver tus preguntas sobre gastronomía, eventos y noticias
+      relevantes de la ciudad.
+    </p>
+    <p class="mb-4 sm:mb-8">
+      #AntiguaGuatemala #Gastronomía #Eventos #Turismo #BotAntigueno
+    </p>
+    <div>
+      <span>Puedes encontrarnos en: </span>
+      <SocialMediaLinks />
+    </div>
+  </section>
+
+  <section class="mt-8 sm:mt-16">
+    <h2 class="title">Top 5 Posts</h2>
+    <ul class="space-y-4 sm:space-y-2">
+      {allPostsByPinned.map((p) => <PostPreview post={p} />)}
+    </ul>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="title">Información general</h2>
+    <ul class="space-y-4 sm:space-y-2">
+      {allInformation.map((info) => <InformationPreview info={info} />)}
+    </ul>
+  </section>
+</BaseLayout>

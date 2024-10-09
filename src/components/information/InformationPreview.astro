@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { HTMLTag, Polymorphic } from "astro/types";
+import FormattedDate from "@/components/FormattedDate";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
+  info: CollectionEntry<"information">;
+};
+
+const { info } = Astro.props;
+const postDate = info.data.updatedDate ?? info.data.pubDate;
+---
+
+<li>
+  <div class="flex flex-col gap-x-0 sm:flex-row sm:divide-x sm:divide-accent">
+    <FormattedDate
+      date={postDate}
+      class="min-w-[125px] text-gray-600 dark:text-gray-400"
+    />
+    <span class="sm:before:ml-4">
+      <a
+        href={`/information/${info.slug}/`}
+        class="cody-link"
+        data-astro-prefetch
+      >
+        {info.data.title}
+      </a>
+    </span>
+  </div>
+  <p class="italic">{info.data.description}</p>
+</li>
