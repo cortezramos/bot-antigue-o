@@ -1,9 +1,9 @@
 <a name="readme-top"></a>
 <div align="center">
   <p align="center">
-    <h1>Astro Theme Cody</h1>
+    <h1>Bot Antigueño - Panza Verde</h1>
   <p>
-    A minimalist blog theme built with Astro. A quick and easy starter build for anyone who wants to start their own blog.
+    Repositorio de la página dedicada a el bot Antigueño que brinda información sobre gastronomía, eventos y noticias relevantes de La Antigua Guatemala - Joya Colonial
   </p>
   </p>
 </div>
