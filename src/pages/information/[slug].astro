@@ -2,6 +2,7 @@
 import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
 import BlogPost from "../../layouts/BlogPost.astro";
 import { getAllInfo } from "@/utils";
+import BlogInfo from "@/layouts/BlogInfo";
 
 export const getStaticPaths = (async () => {
   const infoEntries = await getAllInfo();
@@ -16,6 +17,6 @@ const { info } = Astro.props;
 const { Content } = await info.render();
 ---
 
-<BlogPost post={info}>
+<BlogInfo info={info}>
   <Content />
-</BlogPost>
+</BlogInfo>
