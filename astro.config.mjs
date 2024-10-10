@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { remarkReadingTime } from './src/utils/remark-reading-time.mjs';
@@ -21,6 +21,13 @@ export default defineConfig({
       },
     }
   },
+  image: {
+    service: passthroughImageService(),
+    // passthrough: {
+    //   // https://docs.astro.build/guides/image-processing/#passthrough
+    //   include: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.svg', '**/*.gif'],
+    // },
+  }
 });
 
 
